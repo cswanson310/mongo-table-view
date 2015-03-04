@@ -203,7 +203,6 @@ function processField(fieldWidths, field, obj) {
   // Extract the value for that field, or subfield if field is dotted
   var val = getField(obj, field);
 
-  print("processing " + field + ": " + val);
   if (typeof(val) == 'object' && !(val instanceof ObjectId || val instanceof Array)) {
     // recursive case, it's a sub-doc, recurse with prefix field
     for (var key in val) {
