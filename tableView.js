@@ -2,7 +2,7 @@ function getField(obj, fieldName, bottomOnly) {
   // if fieldName is foo.bar.0, return obj['foo']['bar']['0']
   var names = fieldName.split("."); //pretty simple, since we can't have . in field names
   for (var i in names) {
-    if (obj[names[i]] == null) {
+    if (obj[names[i]] === null) {
       return null;
     }
     obj = obj[names[i]];
@@ -122,11 +122,12 @@ function printRow(header, doc, sep) {
   var row = "";
   for (var field in header) {
     //the value of the doc, unless doc is null, then this is the header row
-    if (doc == null) {
-      var val = field;
+    var val;
+    if (doc === null) {
+      val = field;
     } else {
       //avoid the null, convert to empty string
-      var val = getField(doc, field, true) == null? "" : getField(doc, field);
+      val = getField(doc, field, true) === null? "" : getField(doc, field);
     }
     if (typeof sep !== 'undefined') {
       row += printWithSep(val, header[field], sep);
@@ -147,7 +148,7 @@ function printRow(header, doc, sep) {
 function printTable(data, docs, sep) {
   header = sortedHeader(data);
   if (typeof sep === 'undefined') {
-    printRowSep(header, true)
+    printRowSep(header, true);
     printHeader(header);
   } else {
     printRow(header, null, sep);
@@ -159,16 +160,16 @@ function printTable(data, docs, sep) {
 
 function addField(field, res, obj) {
   //optional prefix parameter, default to empty string
-  var val = getField(obj, field)
+  var val = getField(obj, field);
   if (val instanceof Array) {
     //add each element as a field
     for (var i = 0; i < val.length; i++) {
-      addField(field + "." + i, res, obj)
+      addField(field + "." + i, res, obj);
     }
   } else if (typeof(val) == 'object' && !(val instanceof ObjectId)) {
     //recurse with prefix field
     for (var key in val) {
-      addField(field + "." + key, res, obj)
+      addField(field + "." + key, res, obj);
     }
   } else {
     //base case, it's just a value, count it
@@ -185,7 +186,7 @@ function parseFields (docs) {
   for (var i in docs) {
     var obj=docs[i];
     for (var field in obj) {
-      addField(field, res, obj)
+      addField(field, res, obj);
     }
   }
   return res;
@@ -194,5 +195,4 @@ function parseFields (docs) {
 DBQuery.prototype.table = function(sep) {
   var docs = this.toArray();
   printTable(parseFields(docs), docs, sep);
-}
-
+};
