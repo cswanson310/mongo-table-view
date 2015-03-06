@@ -1,0 +1,20 @@
+{
+  "name": "mongo-table-view",
+  "version": "0.1.0",
+  "description": "Support a .table() method on cursors in the MongoDB shell",
+  "main": "lib/init.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cswanson310/mongo-table-view.git"
+  },
+  "contributors": [
+    "charlie swanson"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cswanson310/mongo-table-view/issues"
+  },
+  "homepage": "https://github.com/cswanson310/mongo-table-view",
+  "devDependencies": { }
+}
+
