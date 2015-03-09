@@ -13,23 +13,26 @@ This module adds a `.table()` function to the mongo cursor in the shell, giving 
     type: 'demoDocument2',
     metadata: { sub: 'doc', two: 'xx'},
     arrayField: [0, 2],
-    other: 'A few more words'
+    other: 'A very long string. It goes on and on and on and on and on and on.......'
 })
 > db.foo.find({}, {_id: 0}).table()
-+-----------------------------------------------------------------------------+
-|            | metadata                    |                  |               |
-|            |-----------------------------|                  |               |
-| arrayField | metadata.sub | metadata.two | other            | type          |
-+------------+--------------+--------------+------------------+---------------+
-| 1,         | document     | fields       |                  | demoDocument  |
-| 2,         |              |              |                  |               |
-| string     |              |              |                  |               |
-+------------+--------------+--------------+------------------+---------------+
-| 0,         | doc          | xx           | A few more words | demoDocument2 |
-| 2          |              |              |                  |               |
-+------------+--------------+--------------+------------------+---------------+
++-------------------------------------------------------------------------------------------+
+|            | metadata                    |                                |               |
+|            |-----------------------------|                                |               |
+| arrayField | metadata.sub | metadata.two | other                          | type          |
++------------+--------------+--------------+--------------------------------+---------------+
+| 1,         | document     | fields       |                                | demoDocument  |
+| 2,         |              |              |                                |               |
+| string     |              |              |                                |               |
++------------+--------------+--------------+--------------------------------+---------------+
+| 0,         | doc          | xx           | A very long string. It goes on | demoDocument2 |
+| 2          |              |              |  and on and on and on and on a |               |
+|            |              |              | nd on.......                   |               |
++------------+--------------+--------------+--------------------------------+---------------+
 ```
 The method works on any type of cursor, so you can still add any sorting, skipping, or limiting you need to.
+
+__Note__: to prevent the table from getting exceedingly wide, field widths are capped, as seen above. Overflow is wrapped.
 
 #Installation
 1) Setup
