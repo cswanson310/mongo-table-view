@@ -29,4 +29,4 @@ function require(relPath) {
 
     __modules.table_view['init.js'](internals);
 
-})({ DBQuery: DBQuery });
+})({ DBQuery: DBQuery, DBCommandCursor: DBCommandCursor });
