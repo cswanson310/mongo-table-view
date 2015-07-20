@@ -17,9 +17,9 @@ This module adds a `.table()` function to the mongo cursor in the shell, giving 
 })
 > db.foo.find({}, {_id: 0}).table()
 +-------------------------------------------------------------------------------------------+
-|            | metadata                    |                                |               |
+| arrayField | metadata                    | other                          | type          |
 |            |-----------------------------|                                |               |
-| arrayField | metadata.sub | metadata.two | other                          | type          |
+|            | metadata.sub | metadata.two |                                |               |
 +------------+--------------+--------------+--------------------------------+---------------+
 | 1,         | document     | fields       |                                | demoDocument  |
 | 2,         |              |              |                                |               |
